@@ -1,0 +1,6 @@
+framework module Pods_Newspick {
+  umbrella header "Pods-Newspick-umbrella.h"
+
+  export *
+  module * { export * }
+}
