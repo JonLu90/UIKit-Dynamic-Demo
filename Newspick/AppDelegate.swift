@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let loginViewController = storyboard.instantiateViewController(withIdentifier: StoryboardID.loginStoryboardID)
     window?.rootViewController = loginViewController
     window?.makeKeyAndVisible()
+    UIApplication.shared.statusBarStyle = .lightContent
     
     return true
   }

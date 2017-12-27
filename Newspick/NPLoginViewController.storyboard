@@ -32,12 +32,12 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Email :" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37J-PC-YVl">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Email :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37J-PC-YVl">
                                 <rect key="frame" x="32" y="81" width="311" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="nRF-g4-aHv"/>
                                 </constraints>
-                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -51,18 +51,18 @@
                                 <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter Password :" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6sB-J6-UH5">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6sB-J6-UH5">
                                 <rect key="frame" x="32" y="150" width="311" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="6t2-rs-pwr"/>
                                 </constraints>
-                                <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrT-h6-qAD">
                                 <rect key="frame" x="141" y="190" width="92" height="32"/>
-                                <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99923807382583618" green="0.8323395848274231" blue="0.47511649131774902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Wgl-Ix-FVm"/>
                                     <constraint firstAttribute="width" constant="92" id="aAw-l6-g38"/>
@@ -71,6 +71,9 @@
                                 <state key="normal" title="Log in">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="cBI-S6-ErD" eventType="touchUpInside" id="rta-29-plN"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSX-0y-UJ2">
                                 <rect key="frame" x="32" y="52" width="42" height="21"/>
@@ -101,6 +104,14 @@
                             <constraint firstItem="XrT-h6-qAD" firstAttribute="centerX" secondItem="Fae-FM-RkK" secondAttribute="centerX" id="ygw-yN-dwC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="37J-PC-YVl" id="sVh-9W-9G6"/>
+                        <outlet property="emailTextLabel" destination="pSX-0y-UJ2" id="bVV-ab-0CR"/>
+                        <outlet property="loginButton" destination="XrT-h6-qAD" id="hFc-bz-VuC"/>
+                        <outlet property="loginTextLabel" destination="DTR-3C-d1J" id="tEz-uk-8uE"/>
+                        <outlet property="passwordTextField" destination="6sB-J6-UH5" id="hIP-ee-Fs4"/>
+                        <outlet property="passwordTextLabel" destination="9Sl-dK-CdR" id="qsg-fB-brx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtP-Jm-tWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

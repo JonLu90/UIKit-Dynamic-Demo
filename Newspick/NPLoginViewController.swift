@@ -10,9 +10,69 @@ import UIKit
 
 class NPLoginViewController: UIViewController {
   
+  @IBOutlet weak var loginTextLabel: UILabel!
+  @IBOutlet weak var emailTextLabel: UILabel!
+  @IBOutlet weak var passwordTextLabel: UILabel!
+  
+  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var passwordTextField: UITextField!
+  
+  @IBOutlet weak var loginButton: UIButton!
+  
+  var loginButtonIsEnabled = false
+  
+  @IBAction func loginButtonPressed(_ sender: UIButton) {
+    if loginButtonIsEnabled {
+      print("Trying ... log in")
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.view.backgroundColor = UIColor.black
+    configure()
+    setupUI()
   }
+  
+  func setupUI() {
+    self.view.backgroundColor = UIColor.black
+    loginButton.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0)
+  }
+  
+  func configure() {
+    self.emailTextField.delegate = self
+    self.passwordTextField.delegate = self
+    
+    setupTextFieldsToCheckIfEmpty()
+  }
+  
+  func setupTextFieldsToCheckIfEmpty() {
+    self.emailTextField.addTarget(self, action: #selector(checkTextFieldsIfEmpty(sender:)), for: .editingChanged)
+    self.passwordTextField.addTarget(self, action: #selector(checkTextFieldsIfEmpty(sender:)), for: .editingChanged)
+  }
+  
+  func checkTextFieldsIfEmpty(sender: UITextField) {
+    sender.text = sender.text?.trimmingCharacters(in: .whitespaces)
+    
+    guard
+      let email = emailTextField.text, !email.isEmpty,
+      let password = passwordTextField.text, !password.isEmpty
+      else {
+        loginButton.backgroundColor = UIColor(red: 1.0, green: 0.8, blue: 0.6, alpha: 1.0)
+        loginButtonIsEnabled = false
+        return
+    }
+    loginButtonIsEnabled = true
+    loginButton.backgroundColor = UIColor(red: 1.0, green: 0.6, blue: 0.0, alpha: 1.0)
+  }
+}
+
+
+extension NPLoginViewController: UITextFieldDelegate {
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+  
 }
