@@ -46,6 +46,8 @@ class NPFaceIconCanvaseViewController: UIViewController {
     return view
   }()
   
+  private lazy var animator: UIDynamicAnimator = UIDynamicAnimator(referenceView: self.faceIconCanvas)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -62,6 +64,10 @@ class NPFaceIconCanvaseViewController: UIViewController {
     super.viewDidAppear(animated)
     
     loadFaceIconImages()
+    initializeAttachmentBehaviors()
+    configureDynamicItemBehavior()
+    startSpinning(angle())
+    registerPanGesture()
   }
   
   func loadFaceIconImages() {
@@ -71,6 +77,104 @@ class NPFaceIconCanvaseViewController: UIViewController {
     faceIcon4.iconImageView.sd_setImage(with: URL(string: ImageURLInfo.urlData4), completed: nil)
     faceIcon5.iconImageView.sd_setImage(with: URL(string: ImageURLInfo.urlData5), completed: nil)
     faceIcon6.iconImageView.sd_setImage(with: URL(string: ImageURLInfo.urlData6), completed: nil)
+  }
+  
+  // MARK: UIKit Dynamics behavior
+  // Attachment behaviors
+  func initializeAttachmentBehaviors() {
+    let attachment1 = UIAttachmentBehavior(item: faceIcon1, attachedToAnchor: faceIconCanvas.center)
+    let attachment2 = UIAttachmentBehavior(item: faceIcon2, attachedToAnchor: faceIconCanvas.center)
+    let attachment3 = UIAttachmentBehavior(item: faceIcon3, attachedToAnchor: faceIconCanvas.center)
+    let attachment4 = UIAttachmentBehavior(item: faceIcon4, attachedToAnchor: faceIconCanvas.center)
+    let attachment5 = UIAttachmentBehavior(item: faceIcon5, attachedToAnchor: faceIconCanvas.center)
+    let attachment6 = UIAttachmentBehavior(item: faceIcon6, attachedToAnchor: faceIconCanvas.center)
+    let attachment7 = UIAttachmentBehavior(item: faceIcon1, attachedTo: faceIcon2)
+    let attachment8 = UIAttachmentBehavior(item: faceIcon2, attachedTo: faceIcon3)
+    let attachment9 = UIAttachmentBehavior(item: faceIcon3, attachedTo: faceIcon4)
+    let attachment10 = UIAttachmentBehavior(item: faceIcon4, attachedTo: faceIcon5)
+    let attachment11 = UIAttachmentBehavior(item: faceIcon5, attachedTo: faceIcon6)
+    let attachment12 = UIAttachmentBehavior(item: faceIcon6, attachedTo: faceIcon1)
+    animator.addBehavior(attachment1)
+    animator.addBehavior(attachment2)
+    animator.addBehavior(attachment3)
+    animator.addBehavior(attachment4)
+    animator.addBehavior(attachment5)
+    animator.addBehavior(attachment6)
+    animator.addBehavior(attachment7)
+    animator.addBehavior(attachment8)
+    animator.addBehavior(attachment9)
+    animator.addBehavior(attachment10)
+    animator.addBehavior(attachment11)
+    animator.addBehavior(attachment12)
+  }
+  
+  // Start to spin
+  func startSpinning(_ pushPulseAngle: CGFloat) {
+    // Initialize a push pulse on faceIcon1
+    let push = UIPushBehavior(items: [faceIcon1], mode: .instantaneous)
+    push.magnitude = 0.8
+    push.angle = pushPulseAngle
+    animator.addBehavior(push)
+  }
+  
+  // Help function: to find the angle that perpendicular to faceIcon1 radius
+  func angle() -> CGFloat {
+    let currentPosition = faceIcon1.layer.position
+    let vectorTowardsRadius = CGVector(dx: currentPosition.x-faceIconCanvas.center.x, dy: currentPosition.y-faceIconCanvas.center.y)
+    let angle = atan2(vectorTowardsRadius.dx, -vectorTowardsRadius.dy)
+    return angle*180/CGFloat.pi
+  }
+  
+  // Configure UIDynamicItemBehavior
+  func configureDynamicItemBehavior() {
+    let items = [faceIcon1, faceIcon2, faceIcon3, faceIcon4, faceIcon5, faceIcon6]
+    let itemBeahavior = UIDynamicItemBehavior(items: items)
+    itemBeahavior.angularResistance = 0
+    itemBeahavior.friction = 0
+    itemBeahavior.elasticity = 1
+    itemBeahavior.resistance = 0
+    animator.addBehavior(itemBeahavior)
+  }
+  
+  var createdAttachmentByPanGesture: UIAttachmentBehavior! {
+    willSet {
+      if createdAttachmentByPanGesture != nil {
+        animator.removeBehavior(createdAttachmentByPanGesture)
+      }
+    }
+    didSet {
+      if createdAttachmentByPanGesture != nil {
+        animator.addBehavior(createdAttachmentByPanGesture)
+      }
+    }
+  }
+  
+  // MARK: Pan gestures
+  func panGesture(_ sender: UIPanGestureRecognizer) {
+    let view = sender.view!
+    let gesturePoint = sender.location(in: view)
+    
+    switch sender.state {
+    case .began:
+      createdAttachmentByPanGesture = UIAttachmentBehavior(item: view, attachedToAnchor: gesturePoint)
+    case .changed:
+      createdAttachmentByPanGesture.anchorPoint = gesturePoint
+    case .ended:
+      createdAttachmentByPanGesture = nil
+    default:
+      createdAttachmentByPanGesture = nil
+    }
+  }
+  
+  // Register pan gestures to face icons
+  func registerPanGesture() {
+    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+    faceIcon1.addGestureRecognizer(panGesture)
+    faceIcon2.addGestureRecognizer(panGesture)
+    faceIcon3.addGestureRecognizer(panGesture)
+    faceIcon4.addGestureRecognizer(panGesture)
+    faceIcon5.addGestureRecognizer(panGesture)
+    faceIcon6.addGestureRecognizer(panGesture)
   }
   
   // MARK: Add subviews
@@ -84,7 +188,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
     faceIconCanvas.addSubview(faceIcon6)
   }
   
-  // MARK: Layout UI components to right positions
+  // MARK: Layout UI components to initial positions
   func configure() {
     faceIconCanvas.frame = self.view.frame
     
