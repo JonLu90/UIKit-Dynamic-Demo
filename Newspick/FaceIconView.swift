@@ -11,7 +11,8 @@ import UIKit
 class FaceIconView: UIView {
   
   var iconImageView: UIImageView = {
-    let imageView = UIImageView()
+    let imageView = UIImageView(frame: CGRect.zero)
+    imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
   
@@ -33,7 +34,11 @@ class FaceIconView: UIView {
   }
   
   func configure() {
-    iconImageView.frame = self.frame
+    // MARK: Autolayout code for imageview
+    iconImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+    iconImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+    self.rightAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 0).isActive = true
+    self.bottomAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 0).isActive = true
   }
   
   required init?(coder aDecoder: NSCoder) {
