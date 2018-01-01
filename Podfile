@@ -5,7 +5,8 @@ target 'Newspick' do
 
   # Pods for Newspick
   pod 'SVProgressHUD'  
-
+  pod 'SDWebImage', '~> 4.0'
+  
   target 'NewspickTests' do
     inherit! :search_paths
     # Pods for testing
