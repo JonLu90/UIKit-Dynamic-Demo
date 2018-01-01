@@ -15,6 +15,13 @@
 		38D0BD231FF3A4FB00DFF22D /* NPLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D0BD221FF3A4FB00DFF22D /* NPLoginViewController.storyboard */; };
 		38D0BD251FF3A53B00DFF22D /* NPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD241FF3A53B00DFF22D /* NPLoginViewController.swift */; };
 		38D0BD281FF3A7D000DFF22D /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD271FF3A7D000DFF22D /* Identifiers.swift */; };
+		38D0BD2B1FF3FB6800DFF22D /* UtilityFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD2A1FF3FB6800DFF22D /* UtilityFunction.swift */; };
+		38D0BD771FFA294B00DFF22D /* FaceIconCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD761FFA294B00DFF22D /* FaceIconCanvasView.swift */; };
+		38D0BD791FFA2B2700DFF22D /* NPFaceIconCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD781FFA2B2700DFF22D /* NPFaceIconCanvasViewController.swift */; };
+		38D0BD7B1FFA2BE500DFF22D /* FaceIconCanvasViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD7A1FFA2BE500DFF22D /* FaceIconCanvasViewConstants.swift */; };
+		38D0BD7D1FFA2FD400DFF22D /* NPFaceIconCanvasViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D0BD7C1FFA2FD400DFF22D /* NPFaceIconCanvasViewController.storyboard */; };
+		38D0BD7F1FFA33EF00DFF22D /* FaceIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD7E1FFA33EF00DFF22D /* FaceIconView.swift */; };
+		38D0BD811FFA533700DFF22D /* ImageURLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0BD801FFA533700DFF22D /* ImageURLInfo.swift */; };
 		68B98D20B69DB3E796DFA73C /* Pods_NewspickTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69B5AC4297DD8EBAE2A05240 /* Pods_NewspickTests.framework */; };
 		6A56624040A1FE427FFE3436 /* Pods_NewspickUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C306A6E61E0F4FAF43DA438 /* Pods_NewspickUITests.framework */; };
 		E226842127BC8D92ED1E1338 /* Pods_Newspick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C584E54925C0547BABC245F /* Pods_Newspick.framework */; };
@@ -54,6 +61,13 @@
 		38D0BD221FF3A4FB00DFF22D /* NPLoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NPLoginViewController.storyboard; sourceTree = "<group>"; };
 		38D0BD241FF3A53B00DFF22D /* NPLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPLoginViewController.swift; sourceTree = "<group>"; };
 		38D0BD271FF3A7D000DFF22D /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		38D0BD2A1FF3FB6800DFF22D /* UtilityFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunction.swift; sourceTree = "<group>"; };
+		38D0BD761FFA294B00DFF22D /* FaceIconCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceIconCanvasView.swift; sourceTree = "<group>"; };
+		38D0BD781FFA2B2700DFF22D /* NPFaceIconCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPFaceIconCanvasViewController.swift; sourceTree = "<group>"; };
+		38D0BD7A1FFA2BE500DFF22D /* FaceIconCanvasViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceIconCanvasViewConstants.swift; sourceTree = "<group>"; };
+		38D0BD7C1FFA2FD400DFF22D /* NPFaceIconCanvasViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NPFaceIconCanvasViewController.storyboard; sourceTree = "<group>"; };
+		38D0BD7E1FFA33EF00DFF22D /* FaceIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceIconView.swift; sourceTree = "<group>"; };
+		38D0BD801FFA533700DFF22D /* ImageURLInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageURLInfo.swift; sourceTree = "<group>"; };
 		5C306A6E61E0F4FAF43DA438 /* Pods_NewspickUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewspickUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69B5AC4297DD8EBAE2A05240 /* Pods_NewspickTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewspickTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B7D8BFC928D23DDA417F33 /* Pods-NewspickTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewspickTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewspickTests/Pods-NewspickTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +130,7 @@
 		38D0BCEE1FF39E6A00DFF22D /* Newspick */ = {
 			isa = PBXGroup;
 			children = (
+				38D0BD291FF3FAFF00DFF22D /* Utilities */,
 				38D0BD1E1FF39EBD00DFF22D /* Views */,
 				38D0BD211FF3A3AD00DFF22D /* Controllers */,
 				38D0BD261FF3A79D00DFF22D /* Constants */,
@@ -156,8 +171,9 @@
 		38D0BD1E1FF39EBD00DFF22D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				38D0BCF81FF39E6A00DFF22D /* LaunchScreen.storyboard */,
-				38D0BD221FF3A4FB00DFF22D /* NPLoginViewController.storyboard */,
+				38D0BD7E1FFA33EF00DFF22D /* FaceIconView.swift */,
+				38D0BD761FFA294B00DFF22D /* FaceIconCanvasView.swift */,
+				38D0BD341FF4B9BF00DFF22D /* Storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -181,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				38D0BD241FF3A53B00DFF22D /* NPLoginViewController.swift */,
+				38D0BD781FFA2B2700DFF22D /* NPFaceIconCanvasViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -189,8 +206,28 @@
 			isa = PBXGroup;
 			children = (
 				38D0BD271FF3A7D000DFF22D /* Identifiers.swift */,
+				38D0BD7A1FFA2BE500DFF22D /* FaceIconCanvasViewConstants.swift */,
+				38D0BD801FFA533700DFF22D /* ImageURLInfo.swift */,
 			);
 			name = Constants;
+			sourceTree = "<group>";
+		};
+		38D0BD291FF3FAFF00DFF22D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				38D0BD2A1FF3FB6800DFF22D /* UtilityFunction.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		38D0BD341FF4B9BF00DFF22D /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				38D0BCF81FF39E6A00DFF22D /* LaunchScreen.storyboard */,
+				38D0BD221FF3A4FB00DFF22D /* NPLoginViewController.storyboard */,
+				38D0BD7C1FFA2FD400DFF22D /* NPFaceIconCanvasViewController.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 		64FFCEA21D14E21A807A3D6F /* Frameworks */ = {
@@ -336,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38D0BCFA1FF39E6A00DFF22D /* LaunchScreen.storyboard in Resources */,
+				38D0BD7D1FFA2FD400DFF22D /* NPFaceIconCanvasViewController.storyboard in Resources */,
 				38D0BCF71FF39E6A00DFF22D /* Assets.xcassets in Resources */,
 				38D0BD231FF3A4FB00DFF22D /* NPLoginViewController.storyboard in Resources */,
 			);
@@ -512,8 +550,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38D0BD811FFA533700DFF22D /* ImageURLInfo.swift in Sources */,
+				38D0BD7F1FFA33EF00DFF22D /* FaceIconView.swift in Sources */,
+				38D0BD791FFA2B2700DFF22D /* NPFaceIconCanvasViewController.swift in Sources */,
 				38D0BD251FF3A53B00DFF22D /* NPLoginViewController.swift in Sources */,
 				38D0BD281FF3A7D000DFF22D /* Identifiers.swift in Sources */,
+				38D0BD2B1FF3FB6800DFF22D /* UtilityFunction.swift in Sources */,
+				38D0BD771FFA294B00DFF22D /* FaceIconCanvasView.swift in Sources */,
+				38D0BD7B1FFA2BE500DFF22D /* FaceIconCanvasViewConstants.swift in Sources */,
 				38D0BCF01FF39E6A00DFF22D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,6 +807,7 @@
 				38D0BD161FF39E6A00DFF22D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38D0BD171FF39E6A00DFF22D /* Build configuration list for PBXNativeTarget "NewspickTests" */ = {
 			isa = XCConfigurationList;
@@ -771,6 +816,7 @@
 				38D0BD191FF39E6A00DFF22D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		38D0BD1A1FF39E6A00DFF22D /* Build configuration list for PBXNativeTarget "NewspickUITests" */ = {
 			isa = XCConfigurationList;
@@ -779,6 +825,7 @@
 				38D0BD1C1FF39E6A00DFF22D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

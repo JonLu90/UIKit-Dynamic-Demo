@@ -10,4 +10,5 @@ import Foundation
 
 struct StoryboardID {
   static let loginStoryboardID = "loginVCStoryboardID"
+  static let faceIconCanvasStoryboardID = "faceIconCanvasVCStoryboardID"
 }

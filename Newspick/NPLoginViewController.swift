@@ -24,6 +24,12 @@ class NPLoginViewController: UIViewController {
   @IBAction func loginButtonPressed(_ sender: UIButton) {
     if loginButtonIsEnabled {
       print("Trying ... log in")
+      UtilityFunction.showLoadingHud("Loading")
+      
+      // TODO
+      let storyboard = UIStoryboard.init(name: "NPFaceIconCanvasViewController", bundle: nil)
+      let vc = storyboard.instantiateViewController(withIdentifier: StoryboardID.faceIconCanvasStoryboardID)
+      present(vc, animated: true, completion: nil)
     }
   }
   
