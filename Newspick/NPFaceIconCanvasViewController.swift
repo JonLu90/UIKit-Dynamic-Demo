@@ -112,7 +112,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
   func startSpinning(_ pushPulseAngle: CGFloat) {
     // Initialize a push pulse on faceIcon1
     let push = UIPushBehavior(items: [faceIcon1], mode: .instantaneous)
-    push.magnitude = 1.0
+    push.magnitude = 1.5
     push.angle = pushPulseAngle
     animator.addBehavior(push)
   }
@@ -122,7 +122,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
     let currentPosition = faceIcon1.layer.presentation()!.position
     let vectorTowardsRadius = CGVector(dx: currentPosition.x-faceIconCanvas.center.x, dy: currentPosition.y-faceIconCanvas.center.y)
     let angle = atan2(vectorTowardsRadius.dx, -vectorTowardsRadius.dy)
-    return angle*180/CGFloat.pi
+    return angle
   }
   
   // Configure UIDynamicItemBehavior
