@@ -112,14 +112,14 @@ class NPFaceIconCanvaseViewController: UIViewController {
   func startSpinning(_ pushPulseAngle: CGFloat) {
     // Initialize a push pulse on faceIcon1
     let push = UIPushBehavior(items: [faceIcon1], mode: .instantaneous)
-    push.magnitude = 0.8
+    push.magnitude = 1.0
     push.angle = pushPulseAngle
     animator.addBehavior(push)
   }
   
   // Help function: to find the angle that perpendicular to faceIcon1 radius
   func angle() -> CGFloat {
-    let currentPosition = faceIcon1.layer.position
+    let currentPosition = faceIcon1.layer.presentation()!.position
     let vectorTowardsRadius = CGVector(dx: currentPosition.x-faceIconCanvas.center.x, dy: currentPosition.y-faceIconCanvas.center.y)
     let angle = atan2(vectorTowardsRadius.dx, -vectorTowardsRadius.dy)
     return angle*180/CGFloat.pi
@@ -161,20 +161,26 @@ class NPFaceIconCanvaseViewController: UIViewController {
       createdAttachmentByPanGesture.anchorPoint = gesturePoint
     case .ended:
       createdAttachmentByPanGesture = nil
+      startSpinning(angle())
     default:
       createdAttachmentByPanGesture = nil
+      startSpinning(angle())
     }
   }
   
   // Register pan gestures to face icons
   func registerPanGesture() {
-    let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
-    faceIcon1.addGestureRecognizer(panGesture)
-    faceIcon2.addGestureRecognizer(panGesture)
-    faceIcon3.addGestureRecognizer(panGesture)
-    faceIcon4.addGestureRecognizer(panGesture)
-    faceIcon5.addGestureRecognizer(panGesture)
-    faceIcon6.addGestureRecognizer(panGesture)
+    
+    func setPanGesture() -> UIPanGestureRecognizer {
+      let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+      return panGesture
+    }
+    faceIcon1.addGestureRecognizer(setPanGesture())
+    faceIcon2.addGestureRecognizer(setPanGesture())
+    faceIcon3.addGestureRecognizer(setPanGesture())
+    faceIcon4.addGestureRecognizer(setPanGesture())
+    faceIcon5.addGestureRecognizer(setPanGesture())
+    faceIcon6.addGestureRecognizer(setPanGesture())
   }
   
   // MARK: Add subviews
