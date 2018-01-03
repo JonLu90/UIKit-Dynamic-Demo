@@ -13,6 +13,14 @@ struct UtilityFunction {
   
   static func showLoadingHud(_ message: String) {
     SVProgressHUD.show(withStatus: message)
-    SVProgressHUD.dismiss(withDelay: 5)
+    SVProgressHUD.dismiss(withDelay: 4)
+  }
+  
+  static func showError(_ message: String) -> UIAlertController {
+    let alertView = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    alertView.addAction(cancelAction)
+    
+    return alertView
   }
 }

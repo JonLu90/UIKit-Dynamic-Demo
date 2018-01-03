@@ -26,10 +26,22 @@ class NPLoginViewController: UIViewController {
       print("Trying ... log in")
       UtilityFunction.showLoadingHud("Loading")
       
-      // TODO
-      let storyboard = UIStoryboard.init(name: "NPFaceIconCanvasViewController", bundle: nil)
-      let vc = storyboard.instantiateViewController(withIdentifier: StoryboardID.faceIconCanvasStoryboardID)
-      present(vc, animated: true, completion: nil)
+      // legal username : admin@newspick.com
+      // legal password : 123
+      // Delay 4 seconds
+      DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
+        NetworkingService.loginService(userName: self.loginTextLabel.text!, password: self.passwordTextLabel.text!, completionHandle: {
+          print("complete!")
+          if LoginStub.testLoginSuccessUsingStub() || (self.emailTextField.text == LoginStub.legalUserName && self.passwordTextField.text == LoginStub.legalPassword) {
+            let storyboard = UIStoryboard.init(name: "NPFaceIconCanvasViewController", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: StoryboardID.faceIconCanvasStoryboardID)
+            self.present(vc, animated: true, completion: nil)
+          }
+          else {
+            self.present(UtilityFunction.showError("User Not Found"), animated: true, completion: nil)
+          }
+        })
+      })
     }
   }
   
