@@ -17,8 +17,9 @@ struct LoginStub {
     let responseString = "username: admin@newspick.com id: 123456"
     let responseData = responseString.data(using: .utf8)
     
-    let sessionStub = URLSessionStub(data: responseData, response: nil, error: nil)
     
+    // let sessionStub :
+    _ = URLSessionStub(data: responseData, response: nil, error: nil)
     // inject sessionStub into networking api request
     // if result reach expectation return true otherwise return false
     

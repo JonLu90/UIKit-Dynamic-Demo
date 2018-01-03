@@ -23,22 +23,33 @@ class NPLoginViewController: UIViewController {
   
   @IBAction func loginButtonPressed(_ sender: UIButton) {
     if loginButtonIsEnabled {
-      print("Trying ... log in")
       UtilityFunction.showLoadingHud("Loading")
-      
+      loginButtonIsEnabled = false
       // legal username : admin@newspick.com
       // legal password : 123
       // Delay 4 seconds
       DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
         NetworkingService.loginService(userName: self.loginTextLabel.text!, password: self.passwordTextLabel.text!, completionHandle: {
-          print("complete!")
+          // Use Stub to simulate login response
+          // but if type username: admin@newspick.com pwd: 123
+          // will guarantee log in successfully
           if LoginStub.testLoginSuccessUsingStub() || (self.emailTextField.text == LoginStub.legalUserName && self.passwordTextField.text == LoginStub.legalPassword) {
             let storyboard = UIStoryboard.init(name: "NPFaceIconCanvasViewController", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: StoryboardID.faceIconCanvasStoryboardID)
-            self.present(vc, animated: true, completion: nil)
+            let faceIconViewController = storyboard.instantiateViewController(withIdentifier: StoryboardID.faceIconCanvasStoryboardID)
+            self.emailTextField.resignFirstResponder()
+            self.passwordTextField.resignFirstResponder()
+            self.present(UtilityFunction.showAlert(title: "Success", message: "Successfully Log In!", showCancel: false), animated: true, completion: nil)
+            
+            // Show success notification dismiss after 1 second
+            // push to Face Icon scene
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+              self.dismiss(animated: true, completion: {
+                self.present(faceIconViewController, animated: true, completion: nil)
+              })
+            })
           }
           else {
-            self.present(UtilityFunction.showError("User Not Found"), animated: true, completion: nil)
+            self.present(UtilityFunction.showAlert(title: "Error", message: "User Not Found!", showCancel: true), animated: true, completion: nil)
           }
         })
       })

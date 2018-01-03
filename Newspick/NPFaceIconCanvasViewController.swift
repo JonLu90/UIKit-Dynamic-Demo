@@ -66,7 +66,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
     loadFaceIconImages()
     initializeAttachmentBehaviors()
     configureDynamicItemBehavior()
-    startSpinning(angle())
+    startSpinningByAPushOfFaceIcon1(angleForClockwise())
     registerPanGesture()
   }
   
@@ -109,7 +109,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
   }
   
   // Start to spin
-  func startSpinning(_ pushPulseAngle: CGFloat) {
+  func startSpinningByAPushOfFaceIcon1(_ pushPulseAngle: CGFloat) {
     // Initialize a push pulse on faceIcon1
     let push = UIPushBehavior(items: [faceIcon1], mode: .instantaneous)
     push.magnitude = 1.5
@@ -118,10 +118,19 @@ class NPFaceIconCanvaseViewController: UIViewController {
   }
   
   // Help function: to find the angle that perpendicular to faceIcon1 radius
-  func angle() -> CGFloat {
+  // for faceIcon1 only
+  func angleForClockwise() -> CGFloat {
     let currentPosition = faceIcon1.layer.presentation()!.position
     let vectorTowardsRadius = CGVector(dx: currentPosition.x-faceIconCanvas.center.x, dy: currentPosition.y-faceIconCanvas.center.y)
-    let angle = atan2(vectorTowardsRadius.dx, -vectorTowardsRadius.dy)
+    let perpendicularVector = CGVector(dx: -vectorTowardsRadius.dy, dy: vectorTowardsRadius.dx)
+    let angle = atan2(perpendicularVector.dy, perpendicularVector.dx)
+    return angle
+  }
+  func angleForAntiClockwise() -> CGFloat {
+    let currentPosition = faceIcon1.layer.presentation()!.position
+    let vectorTowardsRadius = CGVector(dx: currentPosition.x-faceIconCanvas.center.x, dy: currentPosition.y-faceIconCanvas.center.y)
+    let perpendicularVector = CGVector(dx: vectorTowardsRadius.dy, dy: -vectorTowardsRadius.dx)
+    let angle = atan2(perpendicularVector.dy, perpendicularVector.dx)
     return angle
   }
   
@@ -158,13 +167,29 @@ class NPFaceIconCanvaseViewController: UIViewController {
     case .began:
       createdAttachmentByPanGesture = UIAttachmentBehavior(item: view, attachedToAnchor: gesturePoint)
     case .changed:
-      createdAttachmentByPanGesture.anchorPoint = gesturePoint
+      if createdAttachmentByPanGesture != nil {
+        createdAttachmentByPanGesture.anchorPoint = gesturePoint
+      }
     case .ended:
-      createdAttachmentByPanGesture = nil
-      startSpinning(angle())
+
+      // push the face icon circle by applying the pan gesture direction
+      let gestureSwipeVector = CGVector(dx: sender.velocity(in: view).x, dy: sender.velocity(in: view).y)
+      let gestureSwipeAngle = atan2(gestureSwipeVector.dy, gestureSwipeVector.dx)
+      let pushFromGestureSwipe = UIPushBehavior(items: [view], mode: .instantaneous)
+      pushFromGestureSwipe.magnitude = 1.5
+      pushFromGestureSwipe.angle = gestureSwipeAngle
+      animator.addBehavior(pushFromGestureSwipe)
+
+      if createdAttachmentByPanGesture != nil {
+        animator.removeBehavior(createdAttachmentByPanGesture)
+        createdAttachmentByPanGesture = nil
+      }
     default:
-      createdAttachmentByPanGesture = nil
-      startSpinning(angle())
+      if createdAttachmentByPanGesture != nil {
+        animator.removeBehavior(createdAttachmentByPanGesture)
+        createdAttachmentByPanGesture = nil
+      }
+      startSpinningByAPushOfFaceIcon1(angleForClockwise())
     }
   }
   
@@ -173,6 +198,7 @@ class NPFaceIconCanvaseViewController: UIViewController {
     
     func setPanGesture() -> UIPanGestureRecognizer {
       let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+      panGesture.maximumNumberOfTouches = 1
       return panGesture
     }
     faceIcon1.addGestureRecognizer(setPanGesture())

@@ -16,11 +16,12 @@ struct UtilityFunction {
     SVProgressHUD.dismiss(withDelay: 4)
   }
   
-  static func showError(_ message: String) -> UIAlertController {
-    let alertView = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    alertView.addAction(cancelAction)
-    
+  static func showAlert(title: String, message: String, showCancel: Bool) -> UIAlertController {
+    let alertView = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    if showCancel {
+      let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+      alertView.addAction(cancelAction)
+    }
     return alertView
   }
 }
